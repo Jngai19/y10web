@@ -1,0 +1,271 @@
+ 
+<html>
+    
+    <h1>
+    Collison Detection and Scoreboard still a work in progress!
+    </h1>
+    
+    <style>
+            h1{
+             position:absolute; 
+                font-size:20px;
+                top: 750px;
+                left: 400px;
+                background: -webkit-linear-gradient(#DA4453,#89216B);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;;
+            }
+    </style>
+    
+<canvas id="myCanvas" width="800" height="600"
+style="border:4px solid orange;">
+    
+</canvas>
+        
+    <body>    
+    
+    <style>
+        html{
+                background: url(giphy.gif) no-repeat center center fixed;
+                background-size: cover;
+            }
+        </style>
+
+<script>
+    
+    bgarray = [];
+    for (i = 0; i<10; i++) {
+        x = Math.floor(Math.random() * (775 - 0 + 1)) + 0;
+        y = Math.floor(Math.random() * (575 - 0 + 1)) + 0;
+        bg = {x: x, y: y}
+        bgarray.push(bg);
+    }
+ /*for (i = 0; i<10; i++) {
+        alert(bgarray[i].x + " " + bgarray[i].y);
+    
+
+ }*/
+/*
+   index.html - draws a dot on the screen, credit to:
+   http://html5.litten.com/moving-shapes-on-the-html5-canvas-with-the-keyboard/
+   programmer: MHoel, Nov 3, 2014
+*/
+
+
+// Set some global variables
+var canvas;
+var ctx;
+var dx = 10;
+var dy = 10;
+var x = 150;
+var y = 100;
+var WIDTH = 800;
+var HEIGHT = 600;
+
+function circle(x,y,r) {
+	ctx.beginPath();
+	ctx.arc(x, y, r, 0, Math.PI*2, true);
+	ctx.fill();
+}
+
+function rect(x,y,w,h) {
+	ctx.beginPath();
+	ctx.rect(x,y,w,h);
+	ctx.closePath();
+	ctx.fill();
+	ctx.stroke();
+}
+
+function clear() {
+	ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+// Important starting function
+function init() {
+	canvas = document.getElementById("myCanvas");
+	ctx = canvas.getContext("2d");
+	return setInterval(draw, 100); // this is key, tells draw function to fire 10x per second
+}
+
+function doKeyDown(evt){
+	switch (evt.keyCode) {
+		case 87:  /* Up arrow was pressed */
+			if (y - dy > -20){
+				y -= dy;
+			}
+			break;
+		case 83:  /* Down arrow was pressed */
+			if (y + dy + 80 < HEIGHT){
+				y += dy;
+			}
+			break;
+		case 65:  /* Left arrow was pressed */
+			if (x - dx > -20){
+				x -= dx;
+			}
+			break;
+		case 68:  /* Right arrow was pressed */
+			if (x + dx + 50 < WIDTH){
+				x += dx;
+			}
+			break;
+		}
+}
+
+function draw() {
+	clear();
+	ctx.fillStyle = "white";
+	ctx.strokeStyle = "black";
+	//rect(0,0,WIDTH,HEIGHT); 
+	ctx.fillStyle = "purple";
+	//circle(x, y, 10);
+    var img = new Image;
+    
+    
+        img.onload = function() {
+          ctx.drawImage(img,x,y);  
+        };
+        img.src="Sprite2.png";
+    
+    var img2 = new Image;
+    
+    
+        img2.onload = function() {
+          for (i = 0; i<10; i++) {
+          ctx.drawImage(img2,bgarray[i].x,bgarray[i].y);  
+        }
+        };
+        img2.src="Sprite3.png"; 
+} //end draw
+    
+// Main part of program
+init();
+window.addEventListener('keydown',doKeyDown,true);
+
+
+        
+</script>
+        
+        <style>
+            #myCanvas {
+                /*background-image:"Background.png";
+                position:absolute;
+                top: 10px;
+                left: 10px; */
+                background: url(spritebackground.png) no-repeat center center fixed;
+                background-size: cover;
+                position:absolute;
+                top: 125px;
+                left: 300px;
+                
+                
+          }
+        
+        </style>
+           
+    
+</body>
+    
+       <style>
+        #b1 {
+  background-color:#a8c0ff;
+            position:absolute;
+            top: 50px;
+            left: 250px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+            border-radius: 50%;
+}
+        
+        #b1:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+            
+            #b2 {
+  background-color:#a8c0ff;
+            position:absolute;
+            top: 50px;
+            left: 450px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+                border-radius: 50%;
+}
+      
+        #b2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+        #b3 {
+  background-color:#a8c0ff;
+            position:absolute;
+            top: 50px;
+            left: 650px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+                border-radius: 50%;
+}
+      
+        #b3:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+        #b4 {
+  background-color:#a8c0ff;
+            position:absolute;
+            top: 50px;
+            left: 850px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+                border-radius: 50%;
+}
+      
+        #b4:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+        
+    </style>    
+
+    <a href="Randomstuff.html"><button id="b3"class="button button2">Player Stats</button></a>
+    <a href="index.html"> <button id="b1"class="button button2">Home</button></a>
+    <a href="about.html"> <button id="b2"class="button button2">About Us</button></a>
+    <a href="Javascript.html"> <button id="b4"class="button button2">Game</button></a>
+        
+    
+</html>
+         
+
+
